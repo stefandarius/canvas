@@ -20,6 +20,7 @@ const App = () => {
 
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("SAVED!\nCheck your downloads");
+    const [color, setColor] = useState("#000000");
 
     const jumpTo = () => {
         setShowToast(true);
@@ -60,9 +61,12 @@ const App = () => {
                     </Toast.Body>
                 </Toast>
             </div>
-            <CanvasDraw ref={(canvas) => {
+            <h1>hAPPen</h1>
+            <h2>Draw your dream website</h2>
+            <CanvasDraw brushColor={color} ref={(canvas) => {
                 savableCanvas = canvas;
-            }} canvasWidth={window.innerWidth} canvasHeight={window.innerHeight - 90} brushRadius={3} lazyRadius={0} saveData={canvas}/>
+            }} canvasWidth={window.innerWidth} canvasHeight={window.innerHeight - 240} brushRadius={3} lazyRadius={0} saveData={canvas}/>
+            <input style={{...style.button, height: 30}} placeholder="#rrggbb" onChange={e => setColor(e.target.value)}/>
             <button style={style.button} onClick={() => savableCanvas.undo()}>UNDO</button>
             <button style={style.button} onClick={() => savableCanvas.clear()}>CLEAR</button>
             <button style={style.button} onClick={jumpTo}>SAVE</button>
